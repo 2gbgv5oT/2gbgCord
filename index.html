@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تحميل 2gbg & v5ot cord</title>
 
-    <!-- 🔥 أكواد ظهور الرابط وصورة العرض الكبيرة في ديسكورد نفس Pinterest 🔥 -->
+    <!-- أكواد ظهور الرابط وصورة العرض في ديسكورد -->
     <meta property="og:site_name" content="2gbg & v5ot">
     <meta property="og:title" content="2gbg & v5ot cord - النسخة الحصرية">
     <meta property="og:description"
         content="اختر نظام التشغيل الخاص بك وأبدأ تثبيت النسخة الحصرية مع كافة الإضافات والأدوات بسلاسة تامة.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://raw.githubusercontent.com/2gbg/2gbgCord/main/preview.png">
+    <meta property="og:image"
+        content="https://media.discordapp.net/attachments/1381736695958999152/1563639563107311756/image.png?ex=6ade5c52&is=6add0ad2&hm=dd9a7072517fc7f930f26ff8e63dfa34a2c277219c53f03df2300bc69b02248c&=&format=webp&quality=lossless">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="2gbg & v5ot cord - النسخة الحصرية">
     <meta name="twitter:description"
         content="اختر نظام التشغيل الخاص بك وأبدأ تثبيت النسخة الحصرية مع كافة الإضافات والأدوات بسلاسة تامة.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/2gbg/2gbgCord/main/preview.png">
+    <meta name="twitter:image"
+        content="https://media.discordapp.net/attachments/1381736695958999152/1563639563107311756/image.png?ex=6ade5c52&is=6add0ad2&hm=dd9a7072517fc7f930f26ff8e63dfa34a2c277219c53f03df2300bc69b02248c&=&format=webp&quality=lossless">
     <meta name="theme-color" content="#5865f2">
 
     <style>
@@ -278,8 +280,39 @@
             box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
         }
 
+        /* تنسيق عداد الزيارات الفخم مع أيقونة العين 👁️ */
+        .visitor-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(13, 14, 18, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            padding: 10px 22px;
+            border-radius: 30px;
+            margin-top: 40px;
+            z-index: 2;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(88, 101, 242, 0.2);
+            animation: fadeInUp 1.1s ease-out;
+        }
+
+        .visitor-counter svg {
+            width: 24px;
+            height: 24px;
+            fill: #00E5FF;
+            filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.6));
+        }
+
+        .visitor-counter span {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
         .footer {
-            margin-top: 60px;
+            margin-top: 30px;
             color: #b5bac1;
             font-size: 0.9rem;
             z-index: 2;
@@ -341,11 +374,20 @@
         </div>
     </div>
 
+    <!-- 👁️ عداد الزيارات الفخم تحت البطاقات -->
+    <div class="visitor-counter" title="عدد زوار الموقع">
+        <svg viewBox="0 0 24 24">
+            <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+        </svg>
+        <span id="visit-count">جاري التحميل...</span>
+    </div>
+
     <div class="footer">
         &copy; 2026 2gbg & v5ot cord. All rights reserved.
     </div>
 
-    <!-- جافاسكريبت لحركة مؤشر الماوس -->
+    <!-- جافاسكريبت لحركة مؤشر الماوس وجلب عدد الزيارات -->
     <script>
         const cursor = document.getElementById('custom-cursor');
 
@@ -360,6 +402,16 @@
         document.addEventListener('mouseenter', () => {
             cursor.style.opacity = '1';
         });
+
+        // كود العداد الحي للزيارات (يزيد تلقائياً مع كل زائر جديد)
+        fetch('https://api.counterapi.dev/v1/2gbg-v5ot-cord/visits/up')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('visit-count').textContent = data.count;
+            })
+            .catch(() => {
+                document.getElementById('visit-count').textContent = '0';
+            });
     </script>
 
 </body>
