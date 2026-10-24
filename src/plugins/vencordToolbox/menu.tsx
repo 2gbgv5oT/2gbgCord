@@ -27,7 +27,7 @@ function buildPluginMenu() {
     return (
         <Menu.MenuItem
             id="plugins"
-            label="Plugins"
+            label="2gbgCord Plugins"
             action={() => openSettingsTabModal(PluginsTab)}
         >
             {pluginEntries}

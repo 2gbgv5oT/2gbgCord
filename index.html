@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل 2gbgCord</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(11, 12, 16, 0.7), rgba(11, 12, 16, 0.82)),
+                url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN213ampieTQ0M3c5cTZ4a3Z2cW1vZmZ2MGN3M3M0d25hcjR5MjNxbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H9GdRg90WerxC/giphy.gif') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+            cursor: none;
+        }
+
+        /* مؤشر الماوس المتحرك المخصص بالـ GIF */
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 45px;
+            height: 45px;
+            background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHRlZWFhMzNxMngxZms4NHlibG8wa3hraXAxc3M2eTdkZTAwYWQ2YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/J69voU8oBZmJaxEHbh/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            pointer-events: none;
+            transform: translate(-15%, -15%);
+            z-index: 2147483647;
+            filter: drop-shadow(0 0 8px rgba(88, 101, 242, 0.8));
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatAnime {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .top-banner-gif {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            animation: floatAnime 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.6));
+            border-radius: 12px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 15px;
+            z-index: 2;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #ffffff, #8ea1ff, #5865f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .header p {
+            color: #b5bac1;
+            font-size: 1.15rem;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #dbdee1;
+            z-index: 2;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .platforms-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1150px;
+            width: 100%;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .card {
+            background: rgba(13, 14, 18, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px 25px;
+            width: 330px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover {
+            border-color: #5865f2;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.3);
+            background: rgba(18, 20, 26, 0.7);
+        }
+
+        .card.featured {
+            border: 1.5px solid #5865f2;
+            box-shadow: 0 0 30px rgba(88, 101, 242, 0.25);
+        }
+
+        .badge {
+            position: absolute;
+            top: -14px;
+            background: linear-gradient(135deg, #5865f2, #8ea1ff);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px rgba(88, 101, 242, 0.3));
+            }
+
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.7));
+            }
+
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px rgba(88, 101, 242, 0.3));
+            }
+        }
+
+        .os-icon {
+            font-size: 3.2rem;
+            margin: 20px 0 15px 0;
+            color: #ffffff;
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #b5bac1;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .btn {
+            background: rgba(30, 31, 38, 0.65);
+            backdrop-filter: blur(5px);
+            color: #f2f3f5;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+        }
+
+        .btn:hover {
+            background: rgba(43, 45, 53, 0.85);
+            border-color: #5865f2;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #5865f2, #4752c4);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #6571f7, #5865f2);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
+        }
+
+        .footer {
+            margin-top: 60px;
+            color: #b5bac1;
+            font-size: 0.9rem;
+            z-index: 2;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+            animation: fadeInUp 1.2s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- مؤشر الماوس المتحرك -->
+    <div id="custom-cursor"></div>
+
+    <!-- الـ GIF المتحرك في منتصف الموقع -->
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN213ampieTQ0M3c5cTZ4a3Z2cW1vZmZ2MGN3M3M0d25hcjR5MjNxbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H9GdRg90WerxC/giphy.gif"
+        alt="Death Note Banner" class="top-banner-gif">
+
+    <div class="header">
+        <h1>2gbgCord</h1>
+        <p>اختر نظام التشغيل الخاص بك وأبدأ التثبيت بسلاسة</p>
+    </div>
+
+    <div class="section-title">منصات التشغيل المدعومة</div>
+
+    <div class="platforms-container">
+        <!-- Windows Card -->
+        <div class="card featured">
+            <div class="badge">المناسب لجهازك ✓</div>
+            <div class="os-icon">🪟</div>
+            <h3>Windows</h3>
+            <p>Windows 10 وأحدث</p>
+            <div class="btn-group">
+                <!-- تم ربط الزر هنا بملف التثبت -->
+       <a href="data:application/bat;charset=utf-8,@echo%20off%0D%0Acd%20/d%20C:\Users\syayd\2gbgCord%0D%0Aecho%20==========================================%0D%0Aecho%20%20%20Welcome%20to%202gbgCord%20Installer!%0D%0Aecho%20==========================================%0D%0Aecho.%0D%0Aecho%20Building%20and%20installing%20your%20custom%20version...%0D%0Acall%20pnpm%20build%0D%0Acall%20node%20scripts/runInstaller.mjs%20--%20--install%0D%0Aecho.%0D%0Aecho%202gbgCord%20successfully%20installed!%0D%0Apause" download="2gbgCord-installer.bat" class="btn btn-primary">📥 (GUI) تحميل المثبت الخاص</a>
+            </div>
+        </div>
+
+        <!-- Linux Card -->
+        <div class="card">
+            <div class="os-icon">🐧</div>
+            <h3>Linux</h3>
+            <p>جميع التوزيعات</p>
+            <div class="btn-group">
+ <a href="data:application/bat;charset=utf-8,@echo%20off%0D%0Acd%20/d%20C:\Users\syayd\2gbgCord%0D%0Aecho%20==========================================%0D%0Aecho%20%20%20Welcome%20to%202gbgCord%20Installer!%0D%0Aecho%20==========================================%0D%0Aecho.%0D%0Aecho%20Building%20and%20installing%20your%20custom%20version...%0D%0Acall%20pnpm%20build%0D%0Acall%20node%20scripts/runInstaller.mjs%20--%20--install%0D%0Aecho.%0D%0Aecho%202gbgCord%20successfully%20installed!%0D%0Apause" download="2gbgCord-installer.bat" class="btn btn-primary">📥 (GUI) تحميل المثبت الخاص</a>
+        <!-- macOS Card -->
+        <div class="card">
+            <div class="os-icon">🍎</div>
+            <h3>macOS</h3>
+            <p>macOS 11+</p>
+            <div class="btn-group">
+  <a href="data:application/bat;charset=utf-8,@echo%20off%0D%0Acd%20/d%20C:\Users\syayd\2gbgCord%0D%0Aecho%20==========================================%0D%0Aecho%20%20%20Welcome%20to%202gbgCord%20Installer!%0D%0Aecho%20==========================================%0D%0Aecho.%0D%0Aecho%20Building%20and%20installing%20your%20custom%20version...%0D%0Acall%20pnpm%20build%0D%0Acall%20node%20scripts/runInstaller.mjs%20--%20--install%0D%0Aecho.%0D%0Aecho%202gbgCord%20successfully%20installed!%0D%0Apause" download="2gbgCord-installer.bat" class="btn btn-primary">📥 (GUI) تحميل المثبت الخاص</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 2gbgCord. All rights reserved.
+    </div>
+
+    <!-- جافاسكريبت لحركة مؤشر الماوس -->
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+        });
+    </script>
+
+</body>
+
+</html>
