@@ -1,4 +1,4 @@
-// Vencord ae1748f8
+// Vencord 7b517b77
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
