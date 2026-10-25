@@ -1,4 +1,4 @@
-// Vencord eac7d016
+// Vencord 1063e384
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
