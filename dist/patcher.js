@@ -1,4 +1,4 @@
-// Vencord a7ff76ee
+// Vencord aeac9b3c
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
