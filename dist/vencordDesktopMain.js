@@ -1,4 +1,4 @@
-// Vencord d2e40045
+// Vencord 909905eb
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
