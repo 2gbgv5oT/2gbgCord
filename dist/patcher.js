@@ -1,4 +1,4 @@
-// Vencord 40c43724
+// Vencord fb2cf316
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
