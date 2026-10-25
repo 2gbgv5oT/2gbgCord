@@ -1,4 +1,4 @@
-// Vencord a141885a
+// Vencord d2e40045
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
