@@ -1,4 +1,4 @@
-// Vencord 7b517b77
+// Vencord fb467adb
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
