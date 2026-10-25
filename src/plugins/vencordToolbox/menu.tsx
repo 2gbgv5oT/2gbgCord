@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Vencord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -27,7 +27,7 @@ function buildPluginMenu() {
     return (
         <Menu.MenuItem
             id="plugins"
-            label="2gbgCord Plugins"
+            label="2gv5cord Plugins"
             action={() => openSettingsTabModal(PluginsTab)}
         >
             {pluginEntries}
@@ -315,3 +315,4 @@ export function renderPopout(onClose: () => void) {
         </Menu.Menu >
     );
 }
+
