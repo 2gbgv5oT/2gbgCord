@@ -1,4 +1,4 @@
-// Vencord fc0445e7
+// Vencord e6848ebc
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
