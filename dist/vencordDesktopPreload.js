@@ -1,4 +1,4 @@
-// Vencord a604b3aa
+// Vencord e0827275
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
