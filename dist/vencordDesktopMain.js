@@ -1,4 +1,4 @@
-// Vencord fb2cf316
+// Vencord 6de4fc5e
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
