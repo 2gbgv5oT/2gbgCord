@@ -1,4 +1,4 @@
-// Vencord 909905eb
+// Vencord 4cad3bea
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
