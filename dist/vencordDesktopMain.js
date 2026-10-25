@@ -1,4 +1,4 @@
-// Vencord 5541f138
+// Vencord d4143216
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
