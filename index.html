@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تحميل 2gbg & v5oT</title>
 
-    <!-- أكواد ديسكورد لإظهار الصورة الكبيرة والواضحة تحت النص -->
+    <!-- ديسكورد: صورة المعاينة تحت الرابط -->
     <meta property="og:site_name" content="2gbg & v5oT">
     <meta property="og:title" content="2gbg & v5oT - النسخة الحصرية">
     <meta property="og:description"
@@ -25,44 +25,80 @@
         content="https://media.discordapp.net/attachments/1381736695958999152/1563650011051593868/image.png?ex=6ade660d&is=6add148d&hm=281716b4f4d6d61e0d59a54b67c9c7c420929c08c851cbc0f706d802bacd5614&=&format=webp&quality=lossless">
     <meta name="theme-color" content="#5865f2">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        html {
+            background: #0b0c10;
+        }
+
+        /* الخلفية: طبقة ثابتة تتحمّل بالجافاسكريبت (شوف loadBg تحت). لو الصورة ما تحمّلت يبقى هذا التدرج */
+        #bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-color: #0b0c10;
+            background-image: radial-gradient(circle at 20% 10%, rgba(88, 101, 242, .35), transparent 55%), radial-gradient(circle at 85% 90%, rgba(0, 229, 255, .16), transparent 50%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(11, 12, 16, .55), rgba(11, 12, 16, .8));
         }
 
         body {
-            background: linear-gradient(rgba(11, 12, 16, 0.7), rgba(11, 12, 16, 0.82)),
-                url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN213ampieTQ0M3c5cTZ4a3Z2cW1vZmZ2MGN3M3M0d25hcjR5MjNxbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H9GdRg90WerxC/giphy.gif') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
+            color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             padding: 40px 20px;
             overflow-x: hidden;
-            position: relative;
-            cursor: none;
         }
 
-        /* مؤشر الماوس المتحرك المخصص بالـ GIF */
+        /* مؤشر الماوس المخصص (يشتغل بس على الأجهزة اللي فيها ماوس) */
         #custom-cursor {
             position: fixed;
             top: 0;
             left: 0;
             width: 45px;
             height: 45px;
-            background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHRlZWFhMzNxMngxZms4NHlibG8wa3hraXAxc3M2eTdkZTAwYWQ2YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/J69voU8oBZmJaxEHbh/giphy.gif');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
+            background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHRlZWFhMzNxMngxZms4NHlibG8wa3hraXAxc3M2eTdkZTAwYWQ2YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/J69voU8oBZmJaxEHbh/giphy.gif') center / contain no-repeat;
             pointer-events: none;
-            transform: translate(-15%, -15%);
+            opacity: 0;
             z-index: 2147483647;
-            filter: drop-shadow(0 0 8px rgba(88, 101, 242, 0.8));
+            filter: drop-shadow(0 0 8px rgba(88, 101, 242, .8));
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+
+            body,
+            a,
+            button,
+            summary {
+                cursor: none;
+            }
+        }
+
+        @media (hover: none),
+        (pointer: coarse) {
+            #custom-cursor {
+                display: none;
+            }
         }
 
         @keyframes fadeInDown {
@@ -73,33 +109,45 @@
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: none;
             }
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(24px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: none;
             }
         }
 
         @keyframes floatAnime {
-            0% {
-                transform: translateY(0px) rotate(0deg);
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
             }
 
             50% {
                 transform: translateY(-8px) rotate(2deg);
             }
+        }
 
+        @keyframes pulseGlow {
+
+            0%,
             100% {
-                transform: translateY(0px) rotate(0deg);
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px rgba(88, 101, 242, .3));
+            }
+
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 15px rgba(88, 101, 242, .7));
             }
         }
 
@@ -108,17 +156,15 @@
             height: 80px;
             object-fit: contain;
             margin-bottom: 12px;
-            animation: floatAnime 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.6));
             border-radius: 12px;
+            animation: floatAnime 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(88, 101, 242, .6));
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            margin-top: 15px;
-            z-index: 2;
-            animation: fadeInDown 0.8s ease-out;
+            margin: 15px 0 30px;
+            animation: fadeInDown .8s ease-out;
         }
 
         .header h1 {
@@ -126,115 +172,141 @@
             font-weight: 800;
             margin-bottom: 10px;
             letter-spacing: 1px;
-            background: linear-gradient(45deg, #ffffff, #8ea1ff, #5865f2);
+            background: linear-gradient(45deg, #fff, #8ea1ff, #5865f2);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 20px rgba(88, 101, 242, 0.3);
         }
 
         .header p {
-            color: #b5bac1;
+            color: #c5c9d1;
             font-size: 1.15rem;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, .6);
         }
 
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            font-weight: 600;
-            color: #dbdee1;
-            z-index: 2;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .platforms-container {
+        /* القوائم (التابات) */
+        .tabs {
             display: flex;
-            gap: 30px;
+            gap: 6px;
+            padding: 6px;
+            margin-bottom: 35px;
+            max-width: 100%;
+            background: rgba(13, 14, 18, .6);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 40px;
+        }
+
+        .tab {
+            background: none;
+            border: 0;
+            color: #b5bac1;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 30px;
+            white-space: nowrap;
+            transition: .25s;
+        }
+
+        .tab:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .tab.active {
+            color: #fff;
+            background: linear-gradient(135deg, #5865f2, #4752c4);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, .4);
+        }
+
+        .tab:focus-visible,
+        .btn:focus-visible,
+        summary:focus-visible {
+            outline: 2px solid #8ea1ff;
+            outline-offset: 2px;
+        }
+
+        .panel {
+            display: none;
+            width: 100%;
+            max-width: 1150px;
             justify-content: center;
             flex-wrap: wrap;
-            max-width: 1150px;
-            width: 100%;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
+            gap: 30px;
+        }
+
+        .panel.active {
+            display: flex;
+            animation: fadeInUp .6s ease-out;
         }
 
         .card {
-            background: rgba(13, 14, 18, 0.55);
+            background: rgba(13, 14, 18, .58);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, .1);
             border-radius: 20px;
             padding: 35px 25px;
-            width: 330px;
+            width: min(330px, 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+            transition: all .3s cubic-bezier(.16, 1, .3, 1);
         }
 
         .card:hover {
             border-color: #5865f2;
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.3);
-            background: rgba(18, 20, 26, 0.7);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, .3);
         }
 
         .card.featured {
             border: 1.5px solid #5865f2;
-            box-shadow: 0 0 30px rgba(88, 101, 242, 0.25);
+            box-shadow: 0 0 30px rgba(88, 101, 242, .25);
         }
 
         .badge {
             position: absolute;
             top: -14px;
-            background: linear-gradient(135deg, #5865f2, #8ea1ff);
-            color: white;
-            font-size: 0.8rem;
+            color: #fff;
+            font-size: .8rem;
             font-weight: 700;
             padding: 5px 14px;
             border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
-            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #5865f2, #8ea1ff);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, .4);
         }
 
-        @keyframes pulseGlow {
-            0% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 5px rgba(88, 101, 242, 0.3));
-            }
-
-            50% {
-                transform: scale(1.08);
-                filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.7));
-            }
-
-            100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 5px rgba(88, 101, 242, 0.3));
-            }
+        .card:not(.featured) .badge {
+            display: none;
         }
 
         .os-icon {
             font-size: 3.2rem;
-            margin: 20px 0 15px 0;
-            color: #ffffff;
+            margin: 20px 0 15px;
             animation: pulseGlow 3s infinite ease-in-out;
         }
 
         .card h3 {
             font-size: 1.6rem;
             margin-bottom: 8px;
-            color: #ffffff;
             font-weight: 700;
         }
 
         .card p {
             color: #b5bac1;
-            font-size: 0.95rem;
+            font-size: .95rem;
+            line-height: 1.8;
             margin-bottom: 25px;
+        }
+
+        .card.info p {
+            margin-bottom: 0;
         }
 
         .btn-group {
@@ -245,90 +317,153 @@
         }
 
         .btn {
-            background: rgba(30, 31, 38, 0.65);
-            backdrop-filter: blur(5px);
+            background: rgba(30, 31, 38, .65);
             color: #f2f3f5;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, .12);
             padding: 12px 18px;
             border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: .95rem;
+            font-weight: 700;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.25s ease;
+            transition: all .25s ease;
         }
 
         .btn:hover {
-            background: rgba(43, 45, 53, 0.85);
             border-color: #5865f2;
-            color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #5865f2, #4752c4);
             border-color: transparent;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, .3);
         }
 
         .btn-primary:hover {
             background: linear-gradient(135deg, #6571f7, #5865f2);
-            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, .5);
         }
 
-        /* تنسيق عداد الزيارات الفخم مع أيقونة العين 👁️ */
+        .note {
+            width: 100%;
+            text-align: center;
+            color: #b5bac1;
+            font-size: .9rem;
+            margin-top: -5px;
+        }
+
+        /* تبويب المميزات */
+        .feature {
+            width: min(255px, 100%);
+            padding: 30px 20px;
+        }
+
+        .feature .os-icon {
+            font-size: 2.6rem;
+            margin-top: 0;
+        }
+
+        /* تبويب الأشياء الحلوة */
+        .wide {
+            width: min(520px, 100%);
+            align-items: stretch;
+            text-align: right;
+        }
+
+        .wide h3 {
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        details {
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            padding: 12px 0;
+        }
+
+        details:last-of-type {
+            border: 0;
+        }
+
+        summary {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        details p {
+            margin: 10px 0 0;
+            color: #b5bac1;
+            line-height: 1.8;
+            font-size: .95rem;
+        }
+
+        /* عداد الزوار */
         .visitor-counter {
             display: flex;
             align-items: center;
             gap: 10px;
-            background: rgba(13, 14, 18, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(88, 101, 242, 0.4);
+            margin-top: 45px;
             padding: 10px 22px;
             border-radius: 30px;
-            margin-top: 40px;
-            z-index: 2;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(88, 101, 242, 0.2);
-            animation: fadeInUp 1.1s ease-out;
+            background: rgba(13, 14, 18, .75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(88, 101, 242, .4);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .4), 0 0 15px rgba(88, 101, 242, .2);
         }
 
         .visitor-counter svg {
             width: 24px;
             height: 24px;
-            fill: #00E5FF;
-            filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.6));
+            fill: #00e5ff;
+            filter: drop-shadow(0 0 6px rgba(0, 229, 255, .6));
         }
 
         .visitor-counter span {
             font-size: 1.15rem;
-            font-weight: 700;
-            color: #ffffff;
+            font-weight: 800;
             letter-spacing: 1px;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+            min-width: 1.5ch;
+            text-shadow: 0 0 8px rgba(255, 255, 255, .3);
         }
 
         .footer {
-            margin-top: 30px;
+            margin-top: 25px;
             color: #b5bac1;
-            font-size: 0.9rem;
-            z-index: 2;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-            animation: fadeInUp 1.2s ease-out;
+            font-size: .9rem;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+        }
+
+        @media (max-width: 560px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .tab {
+                padding: 9px 14px;
+                font-size: .9rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- مؤشر الماوس المتحرك -->
+    <div id="bg"></div>
+
     <div id="custom-cursor"></div>
 
-    <!-- الـ GIF المتحرك في منتصف الموقع -->
     <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN213ampieTQ0M3c5cTZ4a3Z2cW1vZmZ2MGN3M3M0d25hcjR5MjNxbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H9GdRg90WerxC/giphy.gif"
         alt="Death Note Banner" class="top-banner-gif">
 
@@ -337,11 +472,15 @@
         <p>اختر نظام التشغيل الخاص بك وأبدأ التثبيت بسلاسة</p>
     </div>
 
-    <div class="section-title">منصات التشغيل المدعومة</div>
+    <nav class="tabs" role="tablist" aria-label="أقسام الموقع">
+        <button class="tab active" role="tab" data-tab="download">📥 التحميل</button>
+        <button class="tab" role="tab" data-tab="features">✨ المميزات</button>
+        <button class="tab" role="tab" data-tab="help">🛠️ حل المشاكل</button>
+    </nav>
 
-    <div class="platforms-container">
-        <!-- Windows Card -->
-        <div class="card featured">
+    <!-- ===== القائمة 1: التحميل ===== -->
+    <section id="download" class="panel active" role="tabpanel">
+        <div class="card featured" data-os="win">
             <div class="badge">المناسب لجهازك ✓</div>
             <div class="os-icon">🪟</div>
             <h3>Windows</h3>
@@ -352,8 +491,8 @@
             </div>
         </div>
 
-        <!-- Linux Card -->
-        <div class="card">
+        <div class="card" data-os="linux">
+            <div class="badge">المناسب لجهازك ✓</div>
             <div class="os-icon">🐧</div>
             <h3>Linux</h3>
             <p>جميع التوزيعات</p>
@@ -363,8 +502,8 @@
             </div>
         </div>
 
-        <!-- macOS Card -->
-        <div class="card">
+        <div class="card" data-os="mac">
+            <div class="badge">المناسب لجهازك ✓</div>
             <div class="os-icon">🍎</div>
             <h3>macOS</h3>
             <p>macOS 11+</p>
@@ -373,47 +512,150 @@
                     المثبت الخاص</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 👁️ عداد الزيارات الفخم تحت البطاقات -->
-    <div class="visitor-counter" title="عدد زوار الموقع">
-        <svg viewBox="0 0 24 24">
+    <!-- ===== القائمة 2: المميزات ===== -->
+    <section id="features" class="panel" role="tabpanel">
+        <div class="card feature">
+            <div class="os-icon">🔌</div>
+            <h3>بلقنات حصرية</h3>
+            <p>إضافات خاصة بنسختنا بس، ما تلقاها في غيرها.</p>
+        </div>
+        <div class="card feature">
+            <div class="os-icon">🛡️</div>
+            <h3>آمن وواضح</h3>
+            <p>المثبّت ملف نصي عادي، تقدر تفتحه وتقراه قبل ما تشغّله.</p>
+        </div>
+        <div class="card feature">
+            <div class="os-icon">⚡</div>
+            <h3>تثبيت سريع</h3>
+            <p>حمّل، شغّل، وخلاص. بدون تعقيد ولا خطوات كثيرة.</p>
+        </div>
+        <div class="card feature">
+            <div class="os-icon">🎛️</div>
+            <h3>التحكم بيدك</h3>
+            <p>فعّل البلقنات اللي تحتاجها وعطّل الباقي على كيفك.</p>
+        </div>
+    </section>
+
+    <!-- ===== القائمة 3: حل المشاكل ===== -->
+    <section id="help" class="panel" role="tabpanel">
+        <div class="card wide">
+            <h3>📥 مشاكل التحميل والتشغيل</h3>
+            <details>
+                <summary>المتصفح يحظر الملف أو يقول إنه غير شائع</summary>
+                <p>كروم وإيدج يحذّرون من ملفات .bat عادةً. اضغط على خيارات التحميل جنب الملف واختر «إبقاء» (Keep) إذا
+                    كنت متأكد من مصدره.</p>
+            </details>
+            <details>
+                <summary>ويندوز يطلع شاشة «حماية جهازك» (SmartScreen)</summary>
+                <p>اضغط «معلومات إضافية» ثم «تشغيل على أي حال». قبل لا تشغّله افتح الملف بالمفكرة (Notepad) وتأكد من
+                    محتواه.</p>
+            </details>
+            <details>
+                <summary>برنامج الحماية حذف الملف</summary>
+                <p>لا تعطّل الحماية. حمّل الملف من جديد وافتحه بالمفكرة وتأكد منه، وإذا ما كنت متأكد لا تشغّله.</p>
+            </details>
+            <details>
+                <summary>الملف يفتح ويتسكر على طول</summary>
+                <p>تأكد إنه مو داخل ملف مضغوط (فك الضغط أول)، وانقله لسطح المكتب، وسكّر Discord قبل ما تشغّله.</p>
+            </details>
+        </div>
+
+        <div class="card wide">
+            <h3>🔧 مشاكل بعد التثبيت</h3>
+            <details>
+                <summary>البلقنات ما ظهرت</summary>
+                <p>سكّر Discord بالكامل حتى من أيقونته جنب الساعة، وافتحه من جديد. إذا ما اشتغلت شغّل المثبّت مرة ثانية.
+                </p>
+            </details>
+            <details>
+                <summary>راحت الإضافات بعد تحديث Discord</summary>
+                <p>تحديثات Discord ممكن تمسح التعديلات. شغّل المثبّت مرة ثانية وترجع.</p>
+            </details>
+            <details>
+                <summary>Discord يعلّق أو فيه خلل بعد تفعيل بلقن</summary>
+                <p>عطّل البلقنات اللي فعلتها آخر شي وحدة وحدة لين تعرف أيها السبب.</p>
+            </details>
+        </div>
+
+        <p class="note">لو المشكلة باقية، ارسل لنا وصفها مع صورة للخطأ.</p>
+    </section>
+
+    <!-- عداد الزوار: كل زائر جديد يزيد الرقم 1 (مرة وحدة لكل جهاز/متصفح) -->
+    <div class="visitor-counter" title="عدد زوار الموقع" aria-label="عدد زوار الموقع">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
                 d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
         </svg>
-        <span id="visit-count">1</span>
+        <span id="visit-count">…</span>
     </div>
 
-    <div class="footer">
-        &copy; 2026 2gbg & v5oT. All rights reserved.
-    </div>
+    <div class="footer">&copy; 2026 2gbg & v5oT. All rights reserved.</div>
 
-    <!-- جافاسكريبت لحركة مؤشر الماوس وجلب عدد الزيارات الفوري -->
     <script>
-        const cursor = document.getElementById('custom-cursor');
+        const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        /* مؤشر الماوس */
+        const cursor = $('#custom-cursor');
+        addEventListener('mousemove', e => {
+            cursor.style.opacity = 1;
+            cursor.style.transform = `translate3d(${e.clientX - 7}px, ${e.clientY - 7}px, 0)`;
         });
+        document.addEventListener('mouseleave', () => cursor.style.opacity = 0);
 
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-        });
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-        });
+        /* القوائم (التابات) + الرابط المباشر مثل #features */
+        const tabs = $$('.tab'), panels = $$('.panel');
+        function show(id) {
+            if (!panels.some(p => p.id === id)) id = 'download';
+            tabs.forEach(t => { const on = t.dataset.tab === id; t.classList.toggle('active', on); t.setAttribute('aria-selected', on); });
+            panels.forEach(p => p.classList.toggle('active', p.id === id));
+        }
+        tabs.forEach(t => t.addEventListener('click', () => { show(t.dataset.tab); history.replaceState(null, '', '#' + t.dataset.tab); }));
+        show(location.hash.slice(1));
 
-        // كود العداد المباشر مع جلب الرقم الفعلي وتحديثه
-        fetch('https://api.counterapi.dev/v1/2gbg-v5ot-cord/visits/up')
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.count !== undefined) {
-                    document.getElementById('visit-count').textContent = data.count;
-                }
+        /* تحديد نظام الزائر تلقائياً */
+        const ua = navigator.userAgent;
+        const os = /Android|iPhone|iPad/.test(ua) ? 'win' : /Mac/.test(ua) ? 'mac' : /Linux|X11/.test(ua) ? 'linux' : 'win';
+        $$('.card[data-os]').forEach(c => c.classList.toggle('featured', c.dataset.os === os));
+
+        /* الخلفية: يجرب bg.gif أول، وإذا ما لقاه يجرب رابط ديسكورد، وإذا فشلوا يبقى التدرج */
+        (function loadBg(list) {
+            if (!list.length) return;
+            const img = new Image();
+            img.onload = () => { $('#bg').style.backgroundImage = `url("${list[0]}")`; };
+            img.onerror = () => loadBg(list.slice(1));
+            img.src = list[0];
+        })(['bg.gif', 'https://cdn.discordapp.com/attachments/1381736695958999152/1563665892779368569/0F6403C6-9B15-4B11-B4EE-4CC0EC1076DA.gif?ex=6adfc658&is=6ade74d8&hm=5a0570a77cc8e0b938a6af89592e2a87701e102c8d2c49a1da702e325bd80934&']);
+
+        /* عداد الزوار: /up للزائر الجديد بس، والزائر الراجع يشوف الرقم بدون ما يزيد */
+        const countEl = $('#visit-count');
+        const API = 'https://api.counterapi.dev/v1/2gbg-v5ot-cord/visits/';
+        const fmt = n => Number(n).toLocaleString('en-US');
+        const store = (k, v) => { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (_) { } };
+
+        function paint(n) {
+            const t0 = performance.now();
+            (function step(t) {
+                const p = Math.min((t - t0) / 900, 1);
+                countEl.textContent = fmt(Math.round(n * p));
+                if (p < 1) requestAnimationFrame(step);
+            })(t0);
+        }
+
+        const counted = store('2gbg_counted') === '1';
+        fetch(API + (counted ? '' : 'up'))
+            .then(r => r.json())
+            .then(d => {
+                const n = d.count ?? d.up_count ?? (d.data && d.data.up_count);
+                if (n === undefined) throw 0;
+                paint(n);
+                store('2gbg_counted', '1');
+                store('2gbg_last', n);
             })
             .catch(() => {
-                // تبقى القيمة الافتراضية ظاهرة ومستقرة
+                const last = store('2gbg_last');
+                countEl.textContent = last ? fmt(last) : '—';
             });
     </script>
 
