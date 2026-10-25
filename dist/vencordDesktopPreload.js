@@ -1,4 +1,4 @@
-// Vencord db590a6a
+// Vencord 40abb7d7
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
