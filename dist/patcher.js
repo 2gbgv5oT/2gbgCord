@@ -1,4 +1,4 @@
-// Vencord ce3a202e
+// Vencord 4b463110
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
