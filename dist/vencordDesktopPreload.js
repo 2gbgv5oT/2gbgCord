@@ -1,4 +1,4 @@
-// Vencord 4460024e
+// Vencord ed456919
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
