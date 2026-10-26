@@ -13,16 +13,14 @@
         content="اختر نظام التشغيل الخاص بك وأبدأ تثبيت النسخة الحصرية مع كافة الإضافات والأدوات بسلاسة تامة.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://2gbgv5ot.github.io/2gbgCord/">
-    <meta property="og:image"
-        content="https://media.discordapp.net/attachments/1381736695958999152/1563650011051593868/image.png?ex=6ade660d&is=6add148d&hm=281716b4f4d6d61e0d59a54b67c9c7c420929c08c851cbc0f706d802bacd5614&=&format=webp&quality=lossless">
+    <meta property="og:image" content="https://2gbgv5ot.github.io/2gbgCord/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="2gbg & v5oT - النسخة الحصرية">
     <meta name="twitter:description"
         content="اختر نظام التشغيل الخاص بك وأبدأ تثبيت النسخة الحصرية مع كافة الإضافات والأدوات بسلاسة تامة.">
-    <meta name="twitter:image"
-        content="https://media.discordapp.net/attachments/1381736695958999152/1563650011051593868/image.png?ex=6ade660d&is=6add148d&hm=281716b4f4d6d61e0d59a54b67c9c7c420929c08c851cbc0f706d802bacd5614&=&format=webp&quality=lossless">
+    <meta name="twitter:image" content="https://2gbgv5ot.github.io/2gbgCord/og.png">
     <meta name="theme-color" content="#5865f2">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -349,6 +347,12 @@
             box-shadow: 0 6px 20px rgba(88, 101, 242, .5);
         }
 
+        .btn-disabled {
+            opacity: .45;
+            pointer-events: none;
+            cursor: default;
+        }
+
         .note {
             width: 100%;
             text-align: center;
@@ -464,9 +468,7 @@
 
     <div id="custom-cursor"></div>
 
-    <img src="banner.gif"
-        onerror="this.onerror=null;this.src='https://cdn.discordapp.com/attachments/1381736695958999152/1563664240370524180/pastel_tears.gif?ex=6adfc4ce&is=6ade734e&hm=aaf2ce527b90ba6145c107f14e574f2e1494879bfcf911545c927adfdf2fb4b0&'"
-        alt="2gbg & v5oT" class="top-banner-gif">
+    <img src="banner.gif" onerror="this.style.display='none'" alt="2gbg & v5oT" class="top-banner-gif">
 
     <div class="header">
         <h1>2gbg & v5oT</h1>
@@ -488,7 +490,7 @@
             <p>Windows 10 وأحدث</p>
             <div class="btn-group">
                 <a href="2gbgCord-installer.bat" download="2gbgCord-installer.bat" class="btn btn-primary">📥 تحميل
-                    المثبت الخاص</a>
+                    المثبت</a>
             </div>
         </div>
 
@@ -496,10 +498,9 @@
             <div class="badge">المناسب لجهازك ✓</div>
             <div class="os-icon">🐧</div>
             <h3>Linux</h3>
-            <p>جميع التوزيعات</p>
+            <p>قريباً</p>
             <div class="btn-group">
-                <a href="2gbgCord-installer.bat" download="2gbgCord-installer.bat" class="btn btn-primary">📥 تحميل
-                    المثبت الخاص</a>
+                <span class="btn btn-disabled">⏳ قريباً</span>
             </div>
         </div>
 
@@ -507,10 +508,18 @@
             <div class="badge">المناسب لجهازك ✓</div>
             <div class="os-icon">🍎</div>
             <h3>macOS</h3>
-            <p>macOS 11+</p>
+            <p>قريباً</p>
             <div class="btn-group">
-                <a href="2gbgCord-installer.bat" download="2gbgCord-installer.bat" class="btn btn-primary">📥 تحميل
-                    المثبت الخاص</a>
+                <span class="btn btn-disabled">⏳ قريباً</span>
+            </div>
+        </div>
+
+        <div class="card" data-os="none">
+            <div class="os-icon">🗑️</div>
+            <h3>إزالة النسخة</h3>
+            <p>تشيل التعديلات وترجع ديسكورد الأصلي.</p>
+            <div class="btn-group">
+                <a href="uninstall.bat" download="uninstall.bat" class="btn">📥 تحميل المُزيل</a>
             </div>
         </div>
     </section>
@@ -578,6 +587,10 @@
                 <summary>Discord يعلّق أو فيه خلل بعد تفعيل بلقن</summary>
                 <p>عطّل البلقنات اللي فعلتها آخر شي وحدة وحدة لين تعرف أيها السبب.</p>
             </details>
+            <details>
+                <summary>أبي أحذف النسخة وأرجع Discord الأصلي</summary>
+                <p>حمّل المُزيل من تبويب التحميل وشغّله، وهو يشيل التعديلات. بعدها أعد تشغيل Discord.</p>
+            </details>
         </div>
 
         <p class="note">لو المشكلة باقية، ارسل لنا وصفها مع صورة للخطأ.</p>
@@ -609,31 +622,49 @@
         const tabs = $$('.tab'), panels = $$('.panel');
         function show(id) {
             if (!panels.some(p => p.id === id)) id = 'download';
-            tabs.forEach(t => { const on = t.dataset.tab === id; t.classList.toggle('active', on); t.setAttribute('aria-selected', on); });
+            tabs.forEach(t => {
+                const on = t.dataset.tab === id;
+                t.classList.toggle('active', on);
+                t.setAttribute('aria-selected', on);
+            });
             panels.forEach(p => p.classList.toggle('active', p.id === id));
         }
-        tabs.forEach(t => t.addEventListener('click', () => { show(t.dataset.tab); history.replaceState(null, '', '#' + t.dataset.tab); }));
+        tabs.forEach(t => t.addEventListener('click', () => {
+            show(t.dataset.tab);
+            history.replaceState(null, '', '#' + t.dataset.tab);
+        }));
         show(location.hash.slice(1));
 
-        /* تحديد نظام الزائر تلقائياً */
+        /* تحديد نظام الزائر تلقائياً (الموبايل ما ينعرض له المثبت لأنه للويندوز) */
         const ua = navigator.userAgent;
-        const os = /Android|iPhone|iPad/.test(ua) ? 'win' : /Mac/.test(ua) ? 'mac' : /Linux|X11/.test(ua) ? 'linux' : 'win';
-        $$('.card[data-os]').forEach(c => c.classList.toggle('featured', c.dataset.os === os));
+        const os = /Android|iPhone|iPad/.test(ua) ? 'none'
+            : /Mac/.test(ua) ? 'mac'
+                : /Linux|X11/.test(ua) ? 'linux'
+                    : 'win';
+        $$('.card[data-os]').forEach(c => {
+            if (c.dataset.os === 'none') return; // كرت المُزيل ما ياخذ علامة "المناسب لجهازك"
+            c.classList.toggle('featured', c.dataset.os === os);
+        });
 
-        /* الخلفية: يجرب bg.gif أول، وإذا ما لقاه يجرب رابط ديسكورد، وإذا فشلوا يبقى التدرج */
+        /* الخلفية: يجرب bg.gif أول، وإذا ما لقاه يجرب الرابط الاحتياطي، وإذا فشلوا يبقى التدرج */
         (function loadBg(list) {
             if (!list.length) return;
             const img = new Image();
             img.onload = () => { $('#bg').style.backgroundImage = `url("${list[0]}")`; };
             img.onerror = () => loadBg(list.slice(1));
             img.src = list[0];
-        })(['bg.gif', 'https://cdn.discordapp.com/attachments/1381736695958999152/1563665892779368569/0F6403C6-9B15-4B11-B4EE-4CC0EC1076DA.gif?ex=6adfc658&is=6ade74d8&hm=5a0570a77cc8e0b938a6af89592e2a87701e102c8d2c49a1da702e325bd80934&']);
+        })(['bg.gif']);
 
         /* عداد الزوار: /up للزائر الجديد بس، والزائر الراجع يشوف الرقم بدون ما يزيد */
         const countEl = $('#visit-count');
         const API = 'https://api.counterapi.dev/v1/2gbg-v5ot-cord/visits/';
         const fmt = n => Number(n).toLocaleString('en-US');
-        const store = (k, v) => { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (_) { } };
+        const store = (k, v) => {
+            try {
+                if (v === undefined) return localStorage.getItem(k);
+                localStorage.setItem(k, v);
+            } catch (_) { }
+        };
 
         function paint(n) {
             const t0 = performance.now();
@@ -652,7 +683,7 @@
                 if (n === undefined) throw 0;
                 paint(n);
                 store('2gbg_counted', '1');
-                store('2gbg_last', n);
+                store('2gbg_last', String(n));
             })
             .catch(() => {
                 const last = store('2gbg_last');
