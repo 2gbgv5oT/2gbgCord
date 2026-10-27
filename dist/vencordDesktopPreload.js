@@ -1,4 +1,4 @@
-// Vencord 997a757d
+// Vencord 8c13b959
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
