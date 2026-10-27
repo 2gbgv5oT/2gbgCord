@@ -1,4 +1,4 @@
-// Vencord 75b49b1a
+// Vencord 1f6f8216
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
