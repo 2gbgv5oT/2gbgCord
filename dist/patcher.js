@@ -1,4 +1,4 @@
-// Vencord 81082e17
+// Vencord dcd58ba8
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
